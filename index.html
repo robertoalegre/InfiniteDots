@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Infinite Dots</title>
+  <style>
+    body {
+      background-color: #f7e4d4;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .ball {
+      position: absolute;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function createBall() {
+      let ball = document.createElement('div');
+      ball.className = 'ball';
+
+      // Color aleatorio en una gama de pasteles
+      let hue = Math.floor(Math.random() * 360);
+      let saturation = Math.floor(Math.random() * 50) + 50;
+      let lightness = Math.floor(Math.random() * 30) + 60;
+      let color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+
+      ball.style.backgroundColor = color;
+
+      // Tamaño aleatorio
+      let size = Math.floor(Math.random() * 80) + 20;
+      ball.style.width = size + 'px';
+      ball.style.height = size + 'px';
+
+      // Posición aleatoria
+      let x = Math.floor(Math.random() * (window.innerWidth - size));
+      let y = Math.floor(Math.random() * (window.innerHeight - size));
+      ball.style.left = x + 'px';
+      ball.style.top = y + 'px';
+
+      // Evento de clic para duplicar la bola
+      ball.addEventListener('click', function() {
+        let amount = Math.floor(Math.random() * 10) + 1;
+        for (let i = 0; i < amount; i++) {
+          createBall();
+        }
+      });
+
+      document.body.appendChild(ball);
+    }
+
+    // Crear la primera bola
+    createBall();
+  </script>
+ 
+</body>
+</html>
